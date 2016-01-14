@@ -31,16 +31,21 @@ import java.io.InputStreamReader;
 
 
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends ActionBarActivity //主体
+{
+	/*三个私有变量*/
     private StringBuffer sb = new StringBuffer();
     private ListView listView;
     private TextView tv_load;
-
-    private Handler handler = new Handler() {
+    /*一个类 管理异步消息的*/
+    private Handler handler = new Handler() 
+    {
         @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
+        /*一个方法 用于处理传过来的数据*/
+        public void handleMessage(Message msg) 
+        {
+            switch (msg.what)
+            {
                 case 1:
                     String filename = msg.getData().getString("filename");
                     Intent intent = new Intent(MainActivity.this,ReadingActivity.class);
@@ -54,9 +59,11 @@ public class MainActivity extends ActionBarActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    /*一个窗口正在生成*/
+    protected void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);//用R.layout下的main布局文件进行布局
         tv_load = (TextView) findViewById(R.id.tv_load);
         listView = (ListView) findViewById(R.id.list_option);
         listView.setVisibility(View.VISIBLE);
