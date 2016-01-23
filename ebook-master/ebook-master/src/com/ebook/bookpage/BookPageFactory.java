@@ -271,7 +271,8 @@ public class BookPageFactory {
 			m_lines = pageDown();
 		}
 		
-		public void onDraw(Canvas c) {
+		public void FIX_onDraw(Canvas c) 
+		{
 			if (m_lines.size() == 0) {
 				m_lines = pageDown();
 			}

@@ -89,7 +89,7 @@ public class EbookActivity extends Activity {
 				pagefactory.setBeginPos(Integer.valueOf(pos));
 				pagefactory.pageUp();
 			}
-			pagefactory.onDraw(mCurPageCanvas);
+			pagefactory.FIX_onDraw(mCurPageCanvas);
 		} catch (IOException e1) {
 			Toast.makeText(this, fileName + "不存在，请将文件放在SD卡根目录下,可以超过100M容量",
 					Toast.LENGTH_LONG).show();
@@ -105,7 +105,7 @@ public class EbookActivity extends Activity {
 					if (e.getAction() == MotionEvent.ACTION_DOWN) {
 						mPageWidget.abortAnimation();
 						mPageWidget.calcCornerXY(e.getX(), e.getY());
-						pagefactory.onDraw(mCurPageCanvas);
+						pagefactory.FIX_onDraw(mCurPageCanvas);
 						if (mPageWidget.DragToRight()) {
 							try {
 								pagefactory.prePage();
@@ -114,7 +114,7 @@ public class EbookActivity extends Activity {
 							}
 							if (pagefactory.isFirstPage())
 								return false;
-							pagefactory.onDraw(mNextPageCanvas);
+							pagefactory.FIX_onDraw(mNextPageCanvas);
 						} else {
 							try {
 								pagefactory.nextPage();
@@ -124,7 +124,7 @@ public class EbookActivity extends Activity {
 							if (pagefactory.isLastPage()) {
 								return false;
 							}
-							pagefactory.onDraw(mNextPageCanvas);
+							pagefactory.FIX_onDraw(mNextPageCanvas);
 						}
 						mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
 					}
@@ -306,7 +306,7 @@ public class EbookActivity extends Activity {
 
 			case TEXTSET:
 				pagefactory.changBackGround(msg.arg1);
-				pagefactory.onDraw(mCurPageCanvas);
+				pagefactory.FIX_onDraw(mCurPageCanvas);
 				mPageWidget.postInvalidate();
 				break;
 
@@ -332,7 +332,7 @@ public class EbookActivity extends Activity {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						pagefactory.onDraw(mNextPageCanvas);
+						pagefactory.FIX_onDraw(mNextPageCanvas);
 						mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
 						mPageWidget.invalidate();
 						db.close();
