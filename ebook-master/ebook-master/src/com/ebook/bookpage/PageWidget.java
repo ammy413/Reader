@@ -14,7 +14,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
-
+/* 书页组件类
+ * 主要实现对每一页的显示及位置大小控制
+ * */
 public class PageWidget extends View {
 
 	private int mWidth = 480;
@@ -62,7 +64,7 @@ public class PageWidget extends View {
 	Paint mPaint;
 
 	Scroller mScroller;
-	
+	/*构造方法*/
 	public PageWidget(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -85,11 +87,11 @@ public class PageWidget extends View {
 		mTouch.y = 0.01f;
 
 	}
-	
+	/*设置屏幕宽度*/
 	public void setWidth(int width) {
 		mWidth = width;
 	}
-	
+	/*设置屏幕长度*/
 	public void setHeight(int height) {
 		mHeight = height;
 	}
@@ -281,7 +283,7 @@ public class PageWidget extends View {
 		mBackShadowDrawable.draw(canvas);
 		canvas.restore();
 	}
-	
+	/*设置本页和下一页的map*/
 	public void setBitmaps(Bitmap bm1, Bitmap bm2) {
 		mCurPageBitmap = bm1;
 		mNextPageBitmap = bm2;

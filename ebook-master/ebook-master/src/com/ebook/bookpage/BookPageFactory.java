@@ -14,7 +14,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-
+/* 书页工厂类
+ * 主要实现阅读相关的功能
+ * */
 public class BookPageFactory {
 
 	private File book_file = null;

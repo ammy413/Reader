@@ -54,31 +54,35 @@ public class EbookActivity extends Activity {
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	/*创建*/
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		/*1.设置标题栏和全屏*/
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//设置全屏和进度条等 此处设置为无标题模式
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置为全屏模式
+		/*2.获取并设置屏幕大小属性*/
 		initScreedWH();
 		mPageWidget = new PageWidget(this);
 		mPageWidget.setWidth(screenWidth);
 		mPageWidget.setHeight(screenHeight);
 		mContext = this;
-
+		/*3.初始化书签*/
 		initBookMark();
-
+		/*4.设置布局为mPageWidget样式*/
 		setContentView(mPageWidget);
-
+		/*5.初始化书页*/
 		initBookPage();
 
-		String pos = this.getIntent().getStringExtra("pos");
+		String pos = this.getIntent().getStringExtra("pos");//从哪里拿一个数据？不大明白
 
-		if (!isViewIntent()) {
+		if (!isViewIntent())//判断是否为显示意图
+		{
 			path = this.getIntent().getStringExtra("pathes");
 
 		} else {
-			path = this.getIntent().getData().getPath();
+			path = this.getIntent().getData().getPath();//是显示的话 从数据中得到path
 		}
 
 		try {
@@ -94,10 +98,11 @@ public class EbookActivity extends Activity {
 			Toast.makeText(this, fileName + "不存在，请将文件放在SD卡根目录下,可以超过100M容量",
 					Toast.LENGTH_LONG).show();
 		}
+		
+		mPageWidget.setBitmaps(mCurPageBitmap, mCurPageBitmap);//设置本页和下一页的map
 
-		mPageWidget.setBitmaps(mCurPageBitmap, mCurPageBitmap);
-
-		mPageWidget.setOnTouchListener(new OnTouchListener() {
+		mPageWidget.setOnTouchListener(new OnTouchListener()//触摸事件监听器
+		{
 			public boolean onTouch(View v, MotionEvent e) {
 				// TODO Auto-generated method stub
 				boolean ret = false;
@@ -136,19 +141,19 @@ public class EbookActivity extends Activity {
 			}
 		});
 	}
-
+	/*初始化屏幕大小属性*/
 	private void initScreedWH() {
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenHeight = dm.heightPixels;
 		screenWidth = dm.widthPixels;
 	}
-
+	/*判断是否是查看意图*/
 	private boolean isViewIntent() {
 		String action = getIntent().getAction();
 		return Intent.ACTION_VIEW.equals(action);
 	}
-
+	/*初始化书页*/
 	private void initBookPage() {
 		mCurPageBitmap = Bitmap.createBitmap(screenWidth, screenHeight,
 				Bitmap.Config.ARGB_8888);
@@ -162,16 +167,19 @@ public class EbookActivity extends Activity {
 		pagefactory.setBgBitmap(BitmapFactory.decodeResource(
 				mContext.getResources(), R.drawable.shelf_bkg));
 	}
-
-	private void initBookMark() {
-		db = new DbHelper(mContext);
+	/*初始化书签功能*/
+	private void initBookMark() 
+	{
+		
+		db = new DbHelper(mContext);//新建类
 		try {
 			mCursor = db.select();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (mCursor.getCount() > 0) {
+		if (mCursor.getCount() > 0) 
+		{
 			for (int i = 0; i < mCursor.getCount(); i++) {
 				mCursor.moveToPosition(mCursor.getCount() - (i + 1));
 				String str = mCursor.getString(1);
@@ -181,7 +189,7 @@ public class EbookActivity extends Activity {
 		}
 		db.close();
 	}
-
+	/*在书页界面下 功能键显示文件名 书签 设置 退出*/
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, 1, 1, fileName);
 		menu.add(0, 2, 2, "书签");
@@ -189,7 +197,7 @@ public class EbookActivity extends Activity {
 		menu.add(0, 4, 4, "退出");
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	/*点击书页目录下 功能键的对应项的各种响应*/
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case 1:
@@ -211,8 +219,9 @@ public class EbookActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	protected Dialog onCreateDialog(int id) {
+	/*showDialog函数显示的对应项*/
+	protected Dialog onCreateDialog(int id) 
+	{
 		switch (id) {
 		case OPENMARK:
 			return new AlertDialog.Builder(mContext)
@@ -299,8 +308,9 @@ public class EbookActivity extends Activity {
 		return null;
 
 	}
-
-	Handler mhHandler = new Handler() {
+	/*一个用于处理异步消息 具体是对应于书签项点击后的具体执行*/
+	Handler mhHandler = new Handler() 
+	{
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 

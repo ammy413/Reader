@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+/*这是一个数据库类*/
 public class DbHelper extends SQLiteOpenHelper {
 	private final static String DATABASE_NAME = "sec_db";
 	private final static int DATABASE_VERSION = 1;

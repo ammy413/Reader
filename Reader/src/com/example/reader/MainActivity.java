@@ -4,15 +4,38 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.GridLayout;
 
 public class MainActivity extends Activity
 {
+	
+	private GridLayout mGridLayout;
+	String name[]=new String[]
+			{
+					"1","2"
+			};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		
+		
+		mGridLayout = (GridLayout) findViewById(R.id.root);
+		Button button = new Button(this);
+		button.setText(1);
+		mGridLayout.addView(button,new LayoutParams(1,1));
+       
+
+		
+		
+		
+		
 	}
 
 	@Override
