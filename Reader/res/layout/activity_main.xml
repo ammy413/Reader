@@ -1,37 +1,19 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:rowCount="3"
-    android:columnCount="2"
-    android:id="@+id/root">
+    android:orientation="vertical">
 	
     <!--
-    	从相对布局换成了网格布局 感觉不对 需要预设网格的n*m 不符合要求  
+    	换成了表格布局  
      -->  
     
+    <TableLayout     
+	android:id="@+id/TableLayout01"     
+	android:layout_width="fill_parent"     
+	android:layout_height="wrap_content">    
+	</TableLayout>    
     
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        
-        
-        android:layout_columnSpan="2"  
-        android:textSize="50sp"  
-        android:layout_marginLeft="4px"  
-        android:layout_marginRight="4px"  
-        android:padding="5px"  
-        android:layout_gravity="right"  
-        android:background="#eee"  
-        android:textColor="#000"  
-        android:text="0"/>  
-
-    <Button   
-        android:layout_width="match_parent"  
-        android:layout_height="wrap_content"  
-        android:layout_columnSpan="2"  
-        android:text="清除"/> 
     
 
-</GridLayout>
+</LinearLayout>

@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridLayout.Spec;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.GridLayout.LayoutParams; 
 
 public class MainActivity extends Activity
@@ -18,6 +22,10 @@ public class MainActivity extends Activity
 					"1","2"
 			};
 	
+	
+	private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT;    
+    private final int FP = ViewGroup.LayoutParams.FILL_PARENT;  
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -26,25 +34,25 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		
 		
+		//新建TableLayout01的实例     
+        TableLayout tableLayout = (TableLayout)findViewById(R.id.TableLayout01);    
+        //全部列自动填充空白处     
+        tableLayout.setStretchAllColumns(true);    
+        //生成10行，8列的表格     
+        for(int row=0;row<10;row++)    
+        {    
+            TableRow tableRow=new TableRow(this);    
+            for(int col=0;col<8;col++)    
+            {    
+                //tv用于显示     
+                TextView tv=new TextView(this);    
+                tv.setText("("+col+","+row+")");    
+                tableRow.addView(tv);    
+            }    
+            //新建的TableRow添加到TableLayout     
+            tableLayout.addView(tableRow, new TableLayout.LayoutParams(FP, WC));    
+        }
 		
-		mGridLayout = (GridLayout) findViewById(R.id.root);
-		Button button = new Button(this);
-		Spec rowSpec = GridLayout.spec(2);
-		Spec columnSpec = GridLayout.spec(0);
-		LayoutParams layoutParams = new LayoutParams(rowSpec, columnSpec); 
-		
-		
-		button.setText(name[0]);
-		mGridLayout.addView(button,layoutParams);
-       
-		Button button2 = new Button(this);
-		Spec rowSpec2 = GridLayout.spec(2);
-		Spec columnSpec2 = GridLayout.spec(1);
-		LayoutParams layoutParams2 = new LayoutParams(rowSpec2, columnSpec2); 
-		
-		
-		button2.setText(name[1]);
-		mGridLayout.addView(button2,layoutParams2);
 		
 		
 		
