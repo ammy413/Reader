@@ -17,14 +17,13 @@ public class MainActivity extends Activity
 {
 	
 	private GridLayout mGridLayout;
-	String name[]=new String[]
+	String mBookname[]=new String[]
 			{
 					"1","2"
 			};
 	
 	
-	private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT;    
-    private final int FP = ViewGroup.LayoutParams.FILL_PARENT;  
+
 
 
 	@Override
@@ -35,23 +34,23 @@ public class MainActivity extends Activity
 		
 		
 		//新建TableLayout01的实例     
-        TableLayout tableLayout = (TableLayout)findViewById(R.id.TableLayout01);    
-        //全部列自动填充空白处     
-        tableLayout.setStretchAllColumns(true);    
-        //生成10行，8列的表格     
-        for(int row=0;row<10;row++)    
-        {    
-            TableRow tableRow=new TableRow(this);    
-            for(int col=0;col<8;col++)    
-            {    
-                //tv用于显示     
-                TextView tv=new TextView(this);    
-                tv.setText("("+col+","+row+")");    
-                tableRow.addView(tv);    
-            }    
-            //新建的TableRow添加到TableLayout     
-            tableLayout.addView(tableRow, new TableLayout.LayoutParams(FP, WC));    
-        }
+        TableLayout tableLayout = (TableLayout)findViewById(R.id.TableLayout01);
+        
+        
+        TableRow tableRow=new TableRow(this);
+        
+        
+        Button button1 = new Button(this);
+        Button button2 = new Button(this);
+        button1.setText(mBookname[0]);
+        button2.setText(mBookname[1]);
+        
+        tableRow.addView(button1);
+        tableRow.addView(button2);
+        
+        tableLayout.addView(tableRow); 
+        
+       
 		
 		
 		
