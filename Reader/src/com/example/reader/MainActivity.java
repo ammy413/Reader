@@ -19,9 +19,8 @@ public class MainActivity extends Activity
 	private GridLayout mGridLayout;
 	String mBookname[]=new String[]
 			{
-					"1","2"
+					"书名1 \n 阅读至xxx","书名2 阅读至yyy"
 			};
-	
 	
 
 
@@ -33,22 +32,24 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		
 		
+		
+
+		
 		//新建TableLayout01的实例     
         TableLayout tableLayout = (TableLayout)findViewById(R.id.TableLayout01);
+        tableLayout.setStretchAllColumns(true);   
+        for(int i=0;i<mBookname.length;i++)
+        {
+        	TableRow tableRow=new TableRow(this);
+        	Button mbutton = new Button(this);
+        	mbutton.setText(mBookname[i]);
+        	tableRow.addView(mbutton);
+        	tableLayout.addView(tableRow);    
+        }
         
         
-        TableRow tableRow=new TableRow(this);
         
-        
-        Button button1 = new Button(this);
-        Button button2 = new Button(this);
-        button1.setText(mBookname[0]);
-        button2.setText(mBookname[1]);
-        
-        tableRow.addView(button1);
-        tableRow.addView(button2);
-        
-        tableLayout.addView(tableRow); 
+       
         
        
 		
