@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.GridLayout.Spec;
+import android.widget.GridLayout.LayoutParams; 
 
 public class MainActivity extends Activity
 {
@@ -28,10 +29,22 @@ public class MainActivity extends Activity
 		
 		mGridLayout = (GridLayout) findViewById(R.id.root);
 		Button button = new Button(this);
-		button.setText(1);
-		mGridLayout.addView(button,new LayoutParams(1,1));
+		Spec rowSpec = GridLayout.spec(2);
+		Spec columnSpec = GridLayout.spec(0);
+		LayoutParams layoutParams = new LayoutParams(rowSpec, columnSpec); 
+		
+		
+		button.setText(name[0]);
+		mGridLayout.addView(button,layoutParams);
        
-
+		Button button2 = new Button(this);
+		Spec rowSpec2 = GridLayout.spec(2);
+		Spec columnSpec2 = GridLayout.spec(1);
+		LayoutParams layoutParams2 = new LayoutParams(rowSpec2, columnSpec2); 
+		
+		
+		button2.setText(name[1]);
+		mGridLayout.addView(button2,layoutParams2);
 		
 		
 		
