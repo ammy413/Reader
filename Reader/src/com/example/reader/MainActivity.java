@@ -19,7 +19,7 @@ public class MainActivity extends Activity
 	private GridLayout mGridLayout;
 	String mBookname[]=new String[]
 			{
-					"书名1 \n 阅读至xxx","书名2 阅读至yyy"
+					"书名1 \n 阅读至xxx","书名2 阅读至yyy","书名3 \n 阅读至zzz","4\n4","5\n5","6\n6","4\n4","5\n5","6\n6"
 			};
 	
 
