@@ -128,6 +128,7 @@ public class MainMenu extends Activity {
 
 		ListView.setAdapter(adapter);
 		ListView.setSelector(R.drawable.item_selector);
+		//给书籍目录添加点击事件
 		ListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View view, int pos,
 					long id) {
