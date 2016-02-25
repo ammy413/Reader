@@ -7,9 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridLayout.Spec;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,9 +21,14 @@ public class MainActivity extends Activity
 {
 	
 	private GridLayout mGridLayout;
+	private ListView booklist;
+	
+	
+	
 	String mBookname[]=new String[]
 			{
 					"书名1 \n 阅读至xxx","书名2 阅读至yyy","书名3 \n 阅读至zzz","4\n4","5\n5","6\n6","4\n4","5\n5","6\n6"
+					,"书名2 阅读至yyy","书名3 \n 阅读至zzz","4\n4","5\n5","6\n6","4\n4","5\n5","6\n6"
 			};
 	
 
@@ -34,27 +41,11 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		
 		
-		
+		booklist = (ListView)findViewById(R.id.booklist);
+		booklist.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mBookname));
 
 		
-		//新建TableLayout01的实例     
-        TableLayout tableLayout = (TableLayout)findViewById(R.id.TableLayout01);
-        tableLayout.setStretchAllColumns(true);   
-        for(int i=0;i<mBookname.length;i++)
-        {
-        	TableRow tableRow=new TableRow(this);
-        	Button mbutton = new Button(this);
-        	mbutton.setText(mBookname[i]);
-        	tableRow.addView(mbutton);
-        	tableLayout.addView(tableRow); 
-        	mbutton.setOnClickListener(new View.OnClickListener()
-        			{
-        		public void onClick(View v)
-        		{
-        			System.out.println("adfe");
-        		}
-        			});
-        }
+		
         
 
 		

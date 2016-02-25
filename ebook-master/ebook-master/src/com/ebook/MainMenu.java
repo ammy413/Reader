@@ -39,7 +39,7 @@ public class MainMenu extends Activity {
 	Context mContext;
 	RadioButton nextPage;
 	RadioButton bmRadioButton;
-	ListView ListView;
+	ListView ListView;//是一个表单视图
 	TextView textView;
 	ImageView storm;
 	private DbHelper db;
@@ -48,7 +48,8 @@ public class MainMenu extends Activity {
 	Cursor mCursor;
 
 	/** Called when the activity is first created. */
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -66,13 +67,14 @@ public class MainMenu extends Activity {
 		nextPage.setOnClickListener(radButtonClicked);
 		bmRadioButton.setOnClickListener(radButtonClicked);
 	}
-
-	private void findView() {
+	/*方法*/
+	private void findView()
+	{
 		textView = (TextView) findViewById(R.id.textView1);
 		bmRadioButton = (RadioButton) findViewById(R.id.bookmark);
 		storm = (ImageView) findViewById(R.id.storm);
 		nextPage = (RadioButton) findViewById(R.id.radio_next);
-		ListView = (ListView) findViewById(R.id.listfile);
+		ListView = (ListView) findViewById(R.id.listfile);//通过listfile这个id找到相应的listview类 进行绑定
 	}
 
 	private OnClickListener radButtonClicked = new OnClickListener() {
@@ -118,27 +120,31 @@ public class MainMenu extends Activity {
 		db.close();
 	}
 
-	private void initListView() {
+	private void initListView() 
+	{
 		ArrayList<File> list = new ArrayList<File>();
 		list = scanSD.getFileList();
 
-		final SimpleAdapter adapter = new SimpleAdapter(this,
-				scanSD.getMapData(list), R.layout.relative,
-				new String[] { "ItemName" }, new int[] { R.id.ItemText });
+		final SimpleAdapter adapter = new SimpleAdapter //实例化一个SimpleAdapter名为adapter 内含
+				(
+				this,scanSD.getMapData(list), R.layout.relative,
+				new String[] 
+						{ "ItemName" }, 
+				new int[] 
+						{ R.id.ItemText }
+				);
 
-		ListView.setAdapter(adapter);
-		ListView.setSelector(R.drawable.item_selector);
-		//给书籍目录添加点击事件
-		ListView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> arg0, View view, int pos,
-					long id) {
+		ListView.setAdapter(adapter);//将adapter设置为ListView的Adapter
+		ListView.setSelector(R.drawable.item_selector);//
+		ListView.setOnItemClickListener(new OnItemClickListener()		//给书籍目录添加点击事件
+		{
+			public void onItemClick(AdapterView<?> arg0, View view, int pos,long id)
+			{
 				String path;
 				@SuppressWarnings("unchecked")
-				HashMap<String, String> map = (HashMap<String, String>) ListView
-						.getItemAtPosition(pos);
+				HashMap<String, String> map = (HashMap<String, String>) ListView.getItemAtPosition(pos);
 				// String name = map.get("ItemText");
-				path = map.get("ItemPath");
-				
+				path = map.get("ItemPath");//获得该项的书名
 				intent.setClass(mContext, EbookActivity.class);
 				intent.putExtra("pathes", path);
 				startActivity(intent);
