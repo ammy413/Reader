@@ -1,4 +1,6 @@
-package com.example.reader;
+package com.reader;
+
+import com.example.reader.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,13 +20,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.GridLayout.LayoutParams; 
 
-public class MainActivity extends Activity
+public class MainMenu extends Activity
 {
 	
 	private GridLayout mGridLayout;
 	private ListView booklist;
 	
-	
+	public final static String EXTRA_MESSAGE = "com.reader.MESSAGE";
 	
 	String mBookname[]=new String[]
 			{
@@ -39,7 +41,7 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_mainmenu);
 		
 		
 		booklist = (ListView)findViewById(R.id.booklist);
@@ -52,6 +54,7 @@ public class MainActivity extends Activity
 					{
 						System.out.println(arg2);
 						setTitle("你点击了第"+arg2+"行");
+						jump(arg2);
 					}
 				}
 				);
@@ -62,6 +65,20 @@ public class MainActivity extends Activity
 		
 	}
 
+	
+	private void jump(int arg2)
+	{
+		
+		Intent mintent = new Intent(this,Reader.class);
+		mintent.putExtra(EXTRA_MESSAGE, arg2);
+		startActivity(mintent);
+	}
+	
+	
+	
+	
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
