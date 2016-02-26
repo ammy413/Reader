@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -44,7 +45,16 @@ public class MainActivity extends Activity
 		booklist = (ListView)findViewById(R.id.booklist);
 		booklist.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mBookname));
 
-		
+		booklist.setOnItemClickListener(
+				new AdapterView.OnItemClickListener()
+				{
+					public void onItemClick(AdapterView<?> arg0,View arg1,int arg2,long arg3)
+					{
+						System.out.println(arg2);
+						setTitle("你点击了第"+arg2+"行");
+					}
+				}
+				);
 		
         
 
