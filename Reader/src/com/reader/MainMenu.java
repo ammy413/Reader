@@ -1,6 +1,10 @@
 package com.reader;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import com.example.reader.R;
+import com.reader.ScanSD.ScanSD;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +19,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridLayout.Spec;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,7 +28,6 @@ import android.widget.GridLayout.LayoutParams;
 public class MainMenu extends Activity
 {
 	
-	private GridLayout mGridLayout;
 	private ListView booklist;
 	
 	public final static String EXTRA_MESSAGE = "com.reader.MESSAGE";
@@ -43,10 +47,14 @@ public class MainMenu extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mainmenu);
 		
+		ArrayList<String> a = new ArrayList<String>();
+		ScanSD SDcard = new ScanSD();
+        //mBookname = SDcard.getFileList();
+		a=SDcard.sgetFileList();
 		
 		booklist = (ListView)findViewById(R.id.booklist);
-		booklist.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mBookname));
-
+		//booklist.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mBookname));
+		booklist.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,a));
 		booklist.setOnItemClickListener(
 				new AdapterView.OnItemClickListener()
 				{

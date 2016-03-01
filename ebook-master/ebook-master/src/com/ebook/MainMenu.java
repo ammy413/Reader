@@ -119,7 +119,7 @@ public class MainMenu extends Activity {
 		}
 		db.close();
 	}
-
+	/*初始化书名目录*/
 	private void initListView() 
 	{
 		ArrayList<File> list = new ArrayList<File>();
